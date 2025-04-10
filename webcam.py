@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-cap = cv2.VideoCapture(0)  # ใช้ 0 หรือ 1 ถ้าไม่ใช่ Pi Camera
+cap = cv2.VideoCapture(0) 
 
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640) 
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
@@ -14,7 +14,6 @@ def crop_center_zoom(frame, zoom_factor=2.0):
     cropped = frame[y1:y1 + new_h, x1:x1 + new_w]
     return cv2.resize(cropped, (w, h))
 
-# กำหนดช่วงสีใน HSV
 colors_hsv = {
     'RedPin': [
         ([0, 100, 100], [10, 255, 255]),
@@ -24,11 +23,10 @@ colors_hsv = {
         ([40, 70, 70], [80, 255, 255])
     ],
     'WhitePin': [
-        ([0, 0, 180], [180, 60, 255])  # ปรับ range สีขาวให้กว้างขึ้นนิดนึง
+        ([0, 0, 180], [180, 60, 255])  
     ]
 }
 
-# สีของกรอบ (BGR)
 box_colors = {
     'RedPin': (0, 0, 255),
     'GreenPin': (0, 255, 0),
@@ -40,7 +38,6 @@ while True:
     if not ret:
         break
 
-    # ✨ เพิ่มการซูมเฉพาะตรงกลางภาพ
     frame = crop_center_zoom(frame, zoom_factor=2.0)
 
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -53,10 +50,8 @@ while True:
             current_mask = cv2.inRange(hsv, lower_np, upper_np)
             mask = current_mask if mask is None else mask + current_mask
 
-        # หา contours จาก mask
         contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-        # วาด contour ทั้งหมดเพื่อ debug (สีฟ้า)
         cv2.drawContours(frame, contours, -1, (255, 255, 0), 1)
 
         for cnt in contours:
@@ -69,7 +64,6 @@ while True:
                     cv2.rectangle(frame, (x, y), (x + w, y + h), box_colors[color_name], 2)
                     cv2.putText(frame, color_name, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, box_colors[color_name], 2)
 
-    # แสดงผลภาพที่ซูม
     cv2.imshow("Pin Color Detection (Zoomed Center)", frame)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
