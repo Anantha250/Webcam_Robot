@@ -28,9 +28,9 @@ colors_hsv = {
 }
 
 box_colors = {
-    'RedPin': (0, 0, 255),
-    'GreenPin': (0, 255, 0),
-    'WhitePin': (255, 255, 255)
+    'Red': (0, 0, 255),
+    'Green': (0, 255, 0),
+    'White': (255, 255, 255)
 }
 
 while True:
