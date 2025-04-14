@@ -15,14 +15,14 @@ def crop_center_zoom(frame, zoom_factor=3.0):
     return cv2.resize(cropped, (w, h))
 
 colors_hsv = {
-    'RedPin': [
+    'Red': [
         ([0, 100, 100], [10, 255, 255]),
         ([160, 100, 100], [179, 255, 255])
     ],
-    'GreenPin': [
+    'Green': [
         ([40, 70, 70], [80, 255, 255])
     ],
-    'WhitePin': [
+    'White': [
         ([0, 0, 179], [180, 60, 255])  
     ]
 }
