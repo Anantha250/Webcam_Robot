@@ -1,11 +1,11 @@
 import cv2
 import numpy as np
 
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 640)
 
-def crop_center_zoom(frame, zoom_factor=3.0):
+def crop_center_zoom(frame, zoom_factor=5.0):
     h, w = frame.shape[:2]
     new_w, new_h = int(w / zoom_factor), int(h / zoom_factor)
     x1 = (w - new_w) // 2
