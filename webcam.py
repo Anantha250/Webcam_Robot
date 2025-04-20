@@ -41,7 +41,6 @@ while True:
 
     frame = crop_center_zoom(frame, zoom_factor=2.0)
 
-    # ปรับภาพให้เนียนขึ้น
     blurred = cv2.GaussianBlur(frame, (5, 5), 0)
     hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
 
@@ -53,7 +52,6 @@ while True:
             current_mask = cv2.inRange(hsv, lower_np, upper_np)
             mask = current_mask if mask is None else cv2.bitwise_or(mask, current_mask)
 
-        # ทำ morphological operations เพื่อลด noise
         mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
         mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
 
