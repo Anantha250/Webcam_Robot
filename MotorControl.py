@@ -1,15 +1,10 @@
 import RPi.GPIO as GPIO
 import time
 
-# ตั้งค่า GPIO
 in1 = 17
 in2 = 18
 ena = 22
 
-try:
-    import RPi.GPIO as GPIO
-except (ImportError, RuntimeError):
-    from fake_rpi.RPi import GPIO
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(in1, GPIO.OUT)
