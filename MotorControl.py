@@ -5,7 +5,6 @@ in1 = 17
 in2 = 18
 ena = 22
 
-
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(in1, GPIO.OUT)
 GPIO.setup(in2, GPIO.OUT)
