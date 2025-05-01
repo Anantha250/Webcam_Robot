@@ -31,7 +31,6 @@ box_colors = {
     'Green': (0, 255, 0),
     'White': (255, 255, 255)
 }
-
 kernel = np.ones((5, 5), np.uint8)
 
 while True:
